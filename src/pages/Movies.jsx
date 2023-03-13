@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { GetSearchMovie } from "components/GetTrending"
 import TrendingList from "components/TrendingList/TrendingList"
 

@@ -7,7 +7,6 @@ const Home = () => {
 
     useEffect(() => {
         GetTranding().then(response => setTrends(response.data.results))
-
     }, [])
 
     return (
