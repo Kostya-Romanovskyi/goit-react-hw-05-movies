@@ -13,10 +13,20 @@ export const GetTranding = async () => {
     }
 }
 
-export const GetSearchMovie = async (query) => {
+export const GetSearchMovies = async (query) => {
     try {
         const response = await axios.get(`${PATH}/3/search/movie?api_key=${KEY}&language=en-US&page=1&include_adult=false&query=${query}`);
         console.log(response);
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const GetMovieByID = async (id) => {
+    try {
+        const response = await axios.get(`${PATH}/3/movie/${id}?api_key=${KEY}&language=en-US`);
+        // console.log(response);
         return response
     } catch (error) {
         console.error(error);

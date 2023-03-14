@@ -20,3 +20,7 @@ export const Link = styled(NavLink)`
     background-color: orangered;
   }
 `
+
+export const Header = styled.header`
+    margin:30px 0;
+`

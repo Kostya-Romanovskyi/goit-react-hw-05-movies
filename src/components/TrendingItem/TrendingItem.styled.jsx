@@ -9,11 +9,12 @@ export const Link = styled(NavLink)`
   color: black;
   font-weight: 500;
   
-  &:not(:last-child){
-    margin-bottom: 10px;
-  }
   &:hover{
       color: white;
     background-color: orangered;
   }
 `;
+
+export const Item = styled.li`
+    margin-bottom: 20px;
+`
