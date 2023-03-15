@@ -6,7 +6,6 @@ import TrendingList from "components/TrendingList/TrendingList"
 const Movies = () => {
     // const [query, setQuery] = useState('')
     const [movies, setMovies] = useState([])
-    const [request, setRequest] = useState('')
     const [searchParams, setSearchParams] = useSearchParams()
     const query = searchParams.get('query')
     console.log(query)
@@ -18,7 +17,6 @@ const Movies = () => {
         if (query === null) {
             return
         }
-        setRequest(query)
 
         GetSearchMovies(query).then(response => setMovies(response.data.results))
 
