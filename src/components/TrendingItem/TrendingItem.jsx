@@ -5,7 +5,7 @@ const TrendingItem = ({ renderList }) => {
     const location = useLocation()
 
     return renderList.map(({ id, title, name }) => {
-        return (<Item key={id} >
+        return (<Item key={id}>
             <Link to={{
                 pathname: `/movies/${id}`,
                 state: {

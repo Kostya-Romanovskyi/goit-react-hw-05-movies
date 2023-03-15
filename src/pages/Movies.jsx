@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
 import { GetSearchMovies } from "components/GetTrending"
 import TrendingList from "components/TrendingList/TrendingList"
@@ -6,6 +6,7 @@ import TrendingList from "components/TrendingList/TrendingList"
 const Movies = () => {
     // const [query, setQuery] = useState('')
     const [movies, setMovies] = useState([])
+    const [request, setRequest] = useState('')
     const [searchParams, setSearchParams] = useSearchParams()
     const query = searchParams.get('query')
     console.log(query)
@@ -17,6 +18,7 @@ const Movies = () => {
         if (query === null) {
             return
         }
+        setRequest(query)
 
         GetSearchMovies(query).then(response => setMovies(response.data.results))
 
@@ -26,15 +28,6 @@ const Movies = () => {
         setSearchParams({ query: evt.target.value });
     }
 
-
-    useEffect(() => {
-        if (query === null) {
-            return
-        }
-
-        GetSearchMovies(query).then(response => setMovies(response.data.results))
-
-    }, [])
 
 
     return (
