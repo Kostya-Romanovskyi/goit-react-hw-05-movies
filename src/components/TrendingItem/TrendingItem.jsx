@@ -1,14 +1,7 @@
 import { Item, Link } from './TrendingItem.styled'
 import { useLocation } from "react-router-dom";
-//  <Link to={{
-//     pathname: `/movies/${movie.id}`,
-//     state: {
-//         from: location.pathname,
-//     },
-// }}></Link>
 
 const TrendingItem = ({ renderList }) => {
-
     const location = useLocation()
 
     return renderList.map(({ id, title, name }) => {

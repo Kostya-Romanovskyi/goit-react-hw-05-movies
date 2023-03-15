@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+
 import { GetMovieByID } from '../components/GetTrending'
 import MovieInfo from "components/MovieInfo/MovieInfo";
 
 const MovieDetails = () => {
     const { moviesID } = useParams();
     const [movie, setMovie] = useState(null)
-
-    console.log(movie)
 
     useEffect(() => {
         GetMovieByID(moviesID).then(response => setMovie(response))
@@ -17,9 +17,13 @@ const MovieDetails = () => {
         return <div>Loading...</div>;
     }
 
+    const goBack = () => {
+        window.history.back();
+    };
+
     return (
         <div>
-            <MovieInfo movie={movie} />
+            <MovieInfo movie={movie} goBack={goBack} />
         </div>
     )
 }
