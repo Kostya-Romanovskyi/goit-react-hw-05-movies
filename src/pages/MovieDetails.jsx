@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
-
+import { useState, useEffect, useRef, Suspense } from "react";
+import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 
 import { GetMovieByID } from '../components/GetTrending'
 import MovieInfo from "components/MovieInfo/MovieInfo";
@@ -9,7 +8,9 @@ const MovieDetails = () => {
     const { moviesID } = useParams();
     const [movie, setMovie] = useState(null)
     const location = useLocation()
-    console.log(location)
+
+    const backLinkLocationRef = useRef(location.state?.from ?? '/' ?? '/movies')
+    console.log(backLinkLocationRef)
 
     useEffect(() => {
         GetMovieByID(moviesID).then(response => setMovie(response))
@@ -19,20 +20,23 @@ const MovieDetails = () => {
         return <div>Loading...</div>;
     }
 
-    const goBack = () => {
-
-
-        window.history.back();
-
-        // if (location.state && location.state.from) {
-        //     return window.history.push(location.state.from);
-        // }
-        // window.history.push('/');
-    };
 
     return (
         <div>
-            <MovieInfo movie={movie} goBack={goBack} />
+            <MovieInfo movie={movie} backLink={backLinkLocationRef.current} />
+
+            <ul>
+                <li>
+                    <Link to="cast" state={moviesID}>Cast</Link>
+                </li>
+                <li>
+                    <Link to="reviews" state={moviesID}>Reviews</Link>
+                </li>
+            </ul>
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+            </Suspense >
         </div>
     )
 }

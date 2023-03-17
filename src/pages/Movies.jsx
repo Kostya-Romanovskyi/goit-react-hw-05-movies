@@ -1,15 +1,16 @@
-import { useState } from "react"
-import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { useSearchParams, useLocation } from "react-router-dom";
 import { GetSearchMovies } from "components/GetTrending"
 import TrendingList from "components/TrendingList/TrendingList"
+import MovieForm from "components/MovieForm/MovieForm";
 
 const Movies = () => {
-    // const [query, setQuery] = useState('')
     const [movies, setMovies] = useState([])
     const [searchParams, setSearchParams] = useSearchParams()
-    const query = searchParams.get('query')
-    console.log(query)
 
+    const query = searchParams.get('query') ?? ""
+
+    const location = useLocation()
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
@@ -19,23 +20,26 @@ const Movies = () => {
         }
 
         GetSearchMovies(query).then(response => setMovies(response.data.results))
-
     }
 
     const handleChange = (evt) => {
+        if (evt.target.value === "") {
+            return setSearchParams({})
+        }
+
         setSearchParams({ query: evt.target.value });
     }
 
-
+    useEffect(() => {
+        GetSearchMovies(query).then(response => setMovies(response.data.results))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input onChange={handleChange} name='query' type="text" />
-                <button type="submit">Search</button>
-            </form>
+            <MovieForm submit={handleSubmit} change={handleChange} inputValue={query} />
 
-            <TrendingList renderList={movies} />
+            <TrendingList renderList={movies} location={location} />
         </>
     )
 }

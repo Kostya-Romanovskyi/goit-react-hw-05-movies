@@ -33,3 +33,24 @@ export const GetMovieByID = async (id) => {
     }
 }
 
+export const GetCastByID = async (id) => {
+    try {
+        const response = await axios.get(`${PATH}/3/movie/${id}/credits?api_key=${KEY}&language=en-US`);
+        // console.log(response);
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const GetReviewsByID = async (id) => {
+    try {
+        const response = await axios.get(`${PATH}/3/movie/${id}/reviews?api_key=${KEY}&language=en-US&page=1`);
+        // console.log(response);
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
