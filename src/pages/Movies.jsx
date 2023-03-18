@@ -27,7 +27,7 @@ const Movies = () => {
             return setSearchParams({})
         }
 
-        setSearchParams({ query: evt.target.value });
+        setSearchParams({ query: evt.target.value.toLowerCase() });
     }
 
     useEffect(() => {

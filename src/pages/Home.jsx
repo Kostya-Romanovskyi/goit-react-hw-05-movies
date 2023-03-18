@@ -8,6 +8,7 @@ const Home = () => {
 
     useEffect(() => {
         GetTranding().then(response => setTrends(response.data.results))
+        // GetTranding().then(response => console.log(response.data.results))
     }, [])
 
     const location = useLocation()

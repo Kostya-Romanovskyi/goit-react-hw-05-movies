@@ -4,7 +4,7 @@ import React from "react";
 import { FlexContainer, ButtonBack, Poster, MovieTitle, InfoContainer, Overview, GenresTitle } from "./MovieInfo.styled";
 
 
-const MovieInfo = ({ movie: { data: { original_title, release_date, vote_average, overview, genres, poster_path } }, backLink }) => {
+const MovieInfo = ({ movie: { data: { title, original_title, release_date, vote_average, overview, genres, poster_path } }, backLink }) => {
 
 
     return (
@@ -12,11 +12,11 @@ const MovieInfo = ({ movie: { data: { original_title, release_date, vote_average
             <div>
                 <ButtonBack to={backLink}>Go back</ButtonBack>
 
-                <Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
+                <Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
             </div>
 
             <InfoContainer>
-                <MovieTitle>{original_title} ({release_date})</MovieTitle>
+                <MovieTitle>{title} ({release_date})</MovieTitle>
                 <p>Rating: {vote_average.toFixed(1)}</p>
                 <p>
                     <Overview>Overview</Overview>

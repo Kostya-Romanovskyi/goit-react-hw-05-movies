@@ -9,12 +9,18 @@ const MovieDetails = () => {
     const [movie, setMovie] = useState(null)
     const location = useLocation()
 
+    const moviesId = Number(moviesID)
+
     const backLinkLocationRef = useRef(location.state?.from ?? '/' ?? '/movies')
-    console.log(backLinkLocationRef)
 
     useEffect(() => {
-        GetMovieByID(moviesID).then(response => setMovie(response))
-    }, [moviesID])
+        async function test(moviesId) {
+            await GetMovieByID(moviesId).then(response => setMovie(response))
+        }
+
+        test(moviesId)
+
+    }, [moviesId])
 
     if (!movie) {
         return <div>Loading...</div>;
@@ -27,10 +33,10 @@ const MovieDetails = () => {
 
             <ul>
                 <li>
-                    <Link to="cast" state={moviesID}>Cast</Link>
+                    <Link to="cast" state={moviesId}>Cast</Link>
                 </li>
                 <li>
-                    <Link to="reviews" state={moviesID}>Reviews</Link>
+                    <Link to="reviews" state={moviesId}>Reviews</Link>
                 </li>
             </ul>
 
