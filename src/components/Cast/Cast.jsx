@@ -16,4 +16,5 @@ const Cast = () => {
         actors && <ActorList actorsArr={actors} />
     )
 }
+
 export default Cast

@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, Suspense } from "react";
 import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 
@@ -33,10 +34,10 @@ const MovieDetails = () => {
 
             <ul>
                 <li>
-                    <Link to="cast" state={moviesId}>Cast</Link>
+                    <Link to="cast">Cast</Link>
                 </li>
                 <li>
-                    <Link to="reviews" state={moviesId}>Reviews</Link>
+                    <Link to="reviews">Reviews</Link>
                 </li>
             </ul>
 
@@ -46,4 +47,5 @@ const MovieDetails = () => {
         </div>
     )
 }
+
 export default MovieDetails;

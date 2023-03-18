@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Form, Input, Submit } from "./MovieForm.styled"
 
 const MovieForm = ({ submit, change, inputValue }) => {
@@ -7,6 +8,12 @@ const MovieForm = ({ submit, change, inputValue }) => {
             <Submit type="submit">Search</Submit>
         </Form>
     )
+}
+
+MovieForm.propTypes = {
+    submit: PropTypes.func.isRequired,
+    change: PropTypes.func.isRequired,
+    inputValue: PropTypes.string.isRequired,
 }
 
 export default MovieForm

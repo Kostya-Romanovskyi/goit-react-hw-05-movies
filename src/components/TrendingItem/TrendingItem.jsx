@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Item, Link } from './TrendingItem.styled'
 
 const TrendingItem = ({ renderList, location }) => {
@@ -10,4 +11,10 @@ const TrendingItem = ({ renderList, location }) => {
     })
 
 }
+
+TrendingItem.propTypes = {
+    renderList: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
+    location: PropTypes.shape().isRequired,
+}
+
 export default TrendingItem;

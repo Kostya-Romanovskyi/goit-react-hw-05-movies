@@ -5,17 +5,17 @@ import TrendingList from 'components/TrendingList/TrendingList'
 
 const Home = () => {
     const [trends, setTrends] = useState([])
+    const location = useLocation()
 
     useEffect(() => {
         GetTranding().then(response => setTrends(response.data.results))
-        // GetTranding().then(response => console.log(response.data.results))
     }, [])
 
-    const location = useLocation()
     return (
         <>
             <TrendingList renderList={trends} location={location} />
         </>
     )
 }
+
 export default Home
