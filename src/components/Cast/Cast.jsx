@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GetCastByID } from '../GetTrending'
 import ActorList from 'components/ActorList/ActorList';
 
 const Cast = () => {
-    const location = useLocation()
 
+    const { moviesID } = useParams()
     const [actors, setActors] = useState(null)
 
     useEffect(() => {
-        GetCastByID(location.state).then(response => setActors(response.data.cast))
-    }, [location.state])
+        GetCastByID(moviesID).then(response => setActors(response.data.cast))
+    }, [moviesID])
 
     return (
         actors && <ActorList actorsArr={actors} />
